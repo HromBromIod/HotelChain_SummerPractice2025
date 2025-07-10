@@ -1,4 +1,4 @@
-﻿namespace HotelChain.Web.Models;
+﻿namespace HotelChain.Web.Models.HotelInfo;
 
 internal static class HotelInfoRequestDtoValidator
 {

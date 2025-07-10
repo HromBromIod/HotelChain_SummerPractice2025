@@ -1,5 +1,6 @@
 ﻿using HotelChain.BusinessLogic.Services;
 using HotelChain.Web.Models;
+using HotelChain.Web.Models.HotelInfo;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HotelChain.Web.Controllers;

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace HotelChain.Web.Models;
+namespace HotelChain.Web.Models.HotelInfo;
 
 public class HotelInfoResponseDto : ResponseDto
 {

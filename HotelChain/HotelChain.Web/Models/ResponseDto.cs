@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Text.Json.Serialization;
+using HotelChain.Web.Models.HotelInfo;
 
 namespace HotelChain.Web.Models;
 
