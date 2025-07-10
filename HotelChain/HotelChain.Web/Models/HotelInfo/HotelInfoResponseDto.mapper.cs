@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using HotelChain.BusinessLogic.Models;
 
-namespace HotelChain.Web.Models;
+namespace HotelChain.Web.Models.HotelInfo;
 
 internal static class HotelInfoResponseDtoMapper
 {
