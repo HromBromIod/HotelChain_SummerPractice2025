@@ -99,4 +99,21 @@ returning ""Id""
         hotelDto.Id = id;
         return hotelDto;
     }
+    
+    public async Task<bool> DeleteHotelById(int id, CancellationToken cancellationToken)
+    {
+        await using var connection = await GetConnectionAsync(cancellationToken);
+        
+        var sql = $@"
+delete from ""Hotels""
+where ""Id"" = @HotelId
+";
+
+        var result = await connection.ExecuteAsync(
+            sql: sql, 
+            param: new { HotelId = id }
+        );
+
+        return result != 0;
+    }
 }

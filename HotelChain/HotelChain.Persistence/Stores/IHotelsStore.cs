@@ -6,4 +6,5 @@ public interface IHotelsStore
 {
     public Task<HotelDto?> GetHotelById(int id, CancellationToken cancellationToken);
     public Task<HotelDto?> CreateHotelInfo(string name, string phoneNumber, string email, string address, CancellationToken cancellationToken);
+    public Task<bool> DeleteHotelById(int id, CancellationToken cancellationToken);
 }

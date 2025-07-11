@@ -16,7 +16,7 @@ internal class HotelsService(IHotelsStore hotelsStore) : IHotelsService
             {
                 Success = false,
                 StatusCode = (int)HttpStatusCode.NotFound,
-                ErrorMessage = ErrorResponseConstants.HotelInfoNotFountErrorResponseMessage
+                ErrorMessage = ErrorResponseConstants.HotelNotFountErrorResponseMessage
             };
         }
 
@@ -64,6 +64,28 @@ internal class HotelsService(IHotelsStore hotelsStore) : IHotelsService
             PhoneNumber = hotelInfo.PhoneNumber,
             Email = hotelInfo.Email,
             Address = hotelInfo.Address
+        };
+    }
+
+    public async Task<DeleteHotelResponse> DeleteHotelById(DeleteHotelRequest request, CancellationToken cancellationToken)
+    {
+        var result = await hotelsStore.DeleteHotelById(request.Id, cancellationToken);
+
+        if (!result)
+        {
+            return new DeleteHotelResponse
+            {
+                Success = false,
+                StatusCode = (int)HttpStatusCode.NotFound,
+                ErrorMessage = ErrorResponseConstants.HotelNotFountErrorResponseMessage
+            };
+        }
+        
+        return new DeleteHotelResponse
+        {
+            Success = true,
+            StatusCode = 200,
+            Id = request.Id
         };
     }
 }
