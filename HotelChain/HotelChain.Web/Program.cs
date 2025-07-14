@@ -9,8 +9,12 @@
 
 using HotelChain.BusinessLogic;
 using HotelChain.Persistence.PostgreSql;
+using HotelChain.Web.ApplicationExtensions;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.AddSerilog();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -20,7 +24,9 @@ builder.Services.AddBusinessLogic();
 
 builder.Services.AddControllers();
 
-var app = builder.Build();
+var app = builder.Build();  
+
+app.UseSerilogRequestLogging();
 
 if (app.Environment.IsDevelopment())
 {

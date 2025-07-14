@@ -5,15 +5,19 @@ using HotelChain.Persistence.Models;
 using HotelChain.Persistence.PostgreSql.Core;
 using HotelChain.Persistence.Stores;
 using Microsoft.Extensions.Options;
+using Serilog;
 
 namespace HotelChain.Persistence.PostgreSql.Stores;
 
 internal class HotelsStore(
+    ILogger logger,
     IOptions<PersistenceSettings> options)
     : PostgreSqlStoreBase(options), IHotelsStore
 {
     public async Task<HotelDto?> GetHotelById(int id, CancellationToken cancellationToken)
     {
+        logger.Information($"{nameof(HotelsStore)}.{nameof(GetHotelById)}: {id}");
+        
         await using var connection = await GetConnectionAsync(cancellationToken);
 
         var sql = $@"
@@ -44,6 +48,8 @@ where
     public async Task<HotelDto?> CreateHotelInfo(string name, string phoneNumber, string email, string address,
         CancellationToken cancellationToken)
     {
+        logger.Information($"{nameof(HotelsStore)}.{nameof(CreateHotelInfo)}: {name}");
+
         var hotelDto = new HotelDto
         {
             CreationTime = DateTime.UtcNow,
@@ -102,6 +108,8 @@ returning ""Id""
     
     public async Task<bool> DeleteHotelById(int id, CancellationToken cancellationToken)
     {
+        logger.Information($"{nameof(HotelsStore)}.{nameof(DeleteHotelById)}: {id}");
+        
         await using var connection = await GetConnectionAsync(cancellationToken);
         
         var sql = $@"
