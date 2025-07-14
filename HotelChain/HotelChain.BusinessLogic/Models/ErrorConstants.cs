@@ -3,4 +3,5 @@
 internal struct ErrorResponseConstants
 {
     public const string HotelInfoNotFountErrorResponseMessage = "Hotel with the requested id could not be found";
+    public const string CreateHotelDoesNotUniqueInfoResponseMessage = "Hotel with the requested info already exists";
 }

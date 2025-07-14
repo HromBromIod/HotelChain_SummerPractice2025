@@ -33,4 +33,37 @@ internal class HotelsService(IHotelsStore hotelsStore) : IHotelsService
             Address = hotelInfo.Address
         };
     }
+    
+    public async Task<CreateHotelResponse> CreateHotel(CreateHotelRequest request, CancellationToken cancellationToken)
+    {
+        var hotelInfo = await hotelsStore.CreateHotelInfo(
+            request.Name,
+            request.PhoneNumber,
+            request.Email,
+            request.Address, 
+            cancellationToken);
+
+        if (hotelInfo == null)
+        {
+            return new CreateHotelResponse
+            {
+                Success = false,
+                StatusCode = (int) HttpStatusCode.BadRequest,
+                ErrorMessage = ErrorResponseConstants.CreateHotelDoesNotUniqueInfoResponseMessage
+            };
+        }
+
+        return new CreateHotelResponse
+        {
+            Success = true,
+            StatusCode = 201,
+            Id = hotelInfo.Id!.Value,
+            CreationTime = hotelInfo.CreationTime!.Value,
+            ModificationTime = hotelInfo.ModificationTime!.Value,
+            Name = hotelInfo.Name,
+            PhoneNumber = hotelInfo.PhoneNumber,
+            Email = hotelInfo.Email,
+            Address = hotelInfo.Address
+        };
+    }
 }
