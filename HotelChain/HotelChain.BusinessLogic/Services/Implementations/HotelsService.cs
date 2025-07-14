@@ -1,17 +1,25 @@
 ﻿using System.Net;
 using HotelChain.BusinessLogic.Models;
 using HotelChain.Persistence.Stores;
+using Serilog;
 
 namespace HotelChain.BusinessLogic.Services.Implementations;
 
-internal class HotelsService(IHotelsStore hotelsStore) : IHotelsService
+internal class HotelsService(
+    ILogger logger,
+    IHotelsStore hotelsStore)
+    : IHotelsService
 {
     public async Task<HotelInfoResponse> GetHotelInfoById(HotelInfoRequest request, CancellationToken cancellationToken)
     {
+        logger.Information($"{nameof(HotelsService)}.{nameof(GetHotelInfoById)}: {request.Id}");
+        
         var hotelInfo = await hotelsStore.GetHotelById(request.Id, cancellationToken);
 
         if (hotelInfo == null)
         {
+            logger.Information($"{nameof(HotelsService)}.{nameof(GetHotelInfoById)}: {request.Id} not found");
+            
             return new HotelInfoResponse
             {
                 Success = false,
@@ -20,6 +28,8 @@ internal class HotelsService(IHotelsStore hotelsStore) : IHotelsService
             };
         }
 
+        logger.Information($"{nameof(HotelsService)}.{nameof(GetHotelInfoById)}: {request.Id} success");
+        
         return new HotelInfoResponse
         {
             Success = true,
@@ -36,6 +46,8 @@ internal class HotelsService(IHotelsStore hotelsStore) : IHotelsService
     
     public async Task<CreateHotelResponse> CreateHotel(CreateHotelRequest request, CancellationToken cancellationToken)
     {
+        logger.Information($"{nameof(HotelsService)}.{nameof(CreateHotel)}: {request.Name}");
+        
         var hotelInfo = await hotelsStore.CreateHotelInfo(
             request.Name,
             request.PhoneNumber,
@@ -45,6 +57,8 @@ internal class HotelsService(IHotelsStore hotelsStore) : IHotelsService
 
         if (hotelInfo == null)
         {
+            logger.Information($"{nameof(HotelsService)}.{nameof(CreateHotel)}: {request.Name} error");
+            
             return new CreateHotelResponse
             {
                 Success = false,
@@ -53,6 +67,8 @@ internal class HotelsService(IHotelsStore hotelsStore) : IHotelsService
             };
         }
 
+        logger.Information($"{nameof(HotelsService)}.{nameof(CreateHotel)}: {request.Name} success");
+        
         return new CreateHotelResponse
         {
             Success = true,
@@ -69,10 +85,14 @@ internal class HotelsService(IHotelsStore hotelsStore) : IHotelsService
 
     public async Task<DeleteHotelResponse> DeleteHotelById(DeleteHotelRequest request, CancellationToken cancellationToken)
     {
+        logger.Information($"{nameof(HotelsService)}.{nameof(DeleteHotelById)}: {request.Id}");
+        
         var result = await hotelsStore.DeleteHotelById(request.Id, cancellationToken);
 
         if (!result)
         {
+            logger.Information($"{nameof(HotelsService)}.{nameof(DeleteHotelById)}: {request.Id} not found");
+            
             return new DeleteHotelResponse
             {
                 Success = false,
@@ -80,6 +100,8 @@ internal class HotelsService(IHotelsStore hotelsStore) : IHotelsService
                 ErrorMessage = ErrorResponseConstants.HotelNotFountErrorResponseMessage
             };
         }
+        
+        logger.Information($"{nameof(HotelsService)}.{nameof(DeleteHotelById)}: {request.Id} success");
         
         return new DeleteHotelResponse
         {

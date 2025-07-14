@@ -4,13 +4,14 @@ using HotelChain.Web.Models.DeleteHotel;
 using HotelChain.Web.Models.CreateHotel;
 using HotelChain.Web.Models.HotelInfo;
 using Microsoft.AspNetCore.Mvc;
+using ILogger = Serilog.ILogger;
 
 namespace HotelChain.Web.Controllers;
 
 [ApiController]
 [Route("api/hotels")]
 public class HotelsController(
-    ILogger<HotelsController> logger,
+    ILogger logger,
     IHotelsService hotelsService)
     : ControllerBase
 {
@@ -18,12 +19,12 @@ public class HotelsController(
     [Route("info")]
     public async Task<IActionResult> HotelInfo([FromQuery] HotelInfoRequestDto request, CancellationToken cancellationToken)
     {
-        logger.LogInformation($"{nameof(HotelInfo)}: {request}");
+        logger.Information($"{nameof(HotelsController)}.{nameof(HotelInfo)}: {request}");
 
         var validationResult = request.Validate();
         if (!validationResult.IsValid)
         {
-            logger.LogInformation($"{nameof(HotelInfo)}: {validationResult.ErrorMessage}");
+            logger.Information($"{nameof(HotelsController)}.{nameof(HotelInfo)}: {validationResult.ErrorMessage}");
             return BadRequest(validationResult.ToError());
         }
 
@@ -31,11 +32,11 @@ public class HotelsController(
 
         if (!response.Success)
         {
-            logger.LogInformation($"{nameof(HotelInfo)}: {response.ErrorMessage}");
+            logger.Information($"{nameof(HotelsController)}.{nameof(HotelInfo)}: {response.ErrorMessage}");
             return BadRequest(response.ToError());
         }
 
-        logger.LogInformation($"{nameof(HotelInfo)}: Success by {request.Id}");
+        logger.Information($"{nameof(HotelsController)}.{nameof(HotelInfo)}: Success by {request.Id}");
         return Ok(response.ToDto());
     }
     
@@ -43,12 +44,12 @@ public class HotelsController(
     [Route("delete")]
     public async Task<IActionResult> DeleteHotel([FromQuery] DeleteHotelRequestDto request, CancellationToken cancellationToken)
     {
-        logger.LogInformation($"{nameof(HotelInfo)}: {request}");
+        logger.Information($"{nameof(HotelsController)}.{nameof(HotelInfo)}: {request}");
 
         var validationResult = request.Validate();
         if (!validationResult.IsValid)
         {
-            logger.LogInformation($"{nameof(HotelInfo)}: {validationResult.ErrorMessage}");
+            logger.Information($"{nameof(HotelsController)}.{nameof(HotelInfo)}: {validationResult.ErrorMessage}");
             return BadRequest(validationResult.ToError());
         }
 
@@ -56,11 +57,11 @@ public class HotelsController(
 
         if (!response.Success)
         {
-            logger.LogInformation($"{nameof(HotelInfo)}: {response.ErrorMessage}");
+            logger.Information($"{nameof(HotelsController)}.{nameof(HotelInfo)}: {response.ErrorMessage}");
             return BadRequest(response.ToError());
         }
 
-        logger.LogInformation($"{nameof(HotelInfo)}: Success by {request.Id}");
+        logger.Information($"{nameof(HotelsController)}.{nameof(HotelInfo)}: Success by {request.Id}");
         return Ok(response.ToDto());
     }
 
@@ -68,12 +69,12 @@ public class HotelsController(
     [Route("create")]
     public async Task<IActionResult> CreateHotel([FromQuery] CreateHotelRequestDto request, CancellationToken cancellationToken)
     {
-        logger.LogInformation($"{nameof(CreateHotel)}: {request}");
+        logger.Information($"{nameof(HotelsController)}.{nameof(CreateHotel)}: {request}");
         
         var validationResult = request.Validate();
         if (!validationResult.IsValid)
         {
-            logger.LogInformation($"{nameof(CreateHotel)}: {validationResult.ErrorMessage}");
+            logger.Information($"{nameof(HotelsController)}.{nameof(CreateHotel)}: {validationResult.ErrorMessage}");
             return BadRequest(validationResult.ToError());
         }
 
@@ -81,11 +82,11 @@ public class HotelsController(
         
         if (!response.Success)
         {
-            logger.LogInformation($"{nameof(CreateHotel)}: {response.ErrorMessage}");
+            logger.Information($"{nameof(HotelsController)}.{nameof(CreateHotel)}: {response.ErrorMessage}");
             return BadRequest(response.ToError());
         }
 
-        logger.LogInformation($"{nameof(CreateHotel)}: Success create {response.Id}");
+        logger.Information($"{nameof(HotelsController)}.{nameof(CreateHotel)}: Success create {response.Id}");
         return Ok(response.ToDto());
     }
 }
