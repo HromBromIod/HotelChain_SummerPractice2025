@@ -40,4 +40,63 @@ where
 
         return await connection.QuerySingleOrDefaultAsync<HotelDto>(command);
     }
+    
+    public async Task<HotelDto?> CreateHotelInfo(string name, string phoneNumber, string email, string address,
+        CancellationToken cancellationToken)
+    {
+        var hotelDto = new HotelDto
+        {
+            CreationTime = DateTime.UtcNow,
+            ModificationTime = DateTime.UtcNow,
+            Name = name,
+            PhoneNumber = phoneNumber,
+            Email = email,
+            Address = address
+        };
+        
+        await using var connection = await GetConnectionAsync(cancellationToken);
+
+        var sql = $@"
+insert into ""Hotels""(
+    ""CreationTime"",
+    ""ModificationTime"",
+    ""Name"",
+    ""PhoneNumber"",
+    ""Email"",
+    ""Adress"",
+    ""ExternalId"")
+values(
+    @CreationTime,
+    @ModificationTime,
+    @Name,
+    @PhoneNumber,
+    @Email,
+    @Address,
+    gen_random_uuid())
+returning ""Id""
+";
+
+        var command = new CommandDefinition(
+            commandText: sql,
+            commandType: CommandType.Text,
+            parameters: new
+            {
+                CreationTime = hotelDto.CreationTime,
+                ModificationTime = hotelDto.ModificationTime,
+                Name = hotelDto.Name,
+                PhoneNumber = hotelDto.PhoneNumber,
+                Email = hotelDto.Email,
+                Address = hotelDto.Address
+            },
+            cancellationToken: cancellationToken
+        );
+        
+        var id = await connection.QuerySingleOrDefaultAsync<int?>(command);
+
+        if (id == null)
+            return null;
+        
+        hotelDto.Id = id;
+        return hotelDto;
+    }
 }
