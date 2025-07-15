@@ -1,4 +1,4 @@
-﻿namespace HotelChain.BusinessLogic.Models;
+﻿namespace HotelChain.BusinessLogic.Models.CreateHotel;
 
 public record CreateHotelRequest(
     string Name,

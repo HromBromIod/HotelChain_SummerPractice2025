@@ -1,4 +1,4 @@
-﻿namespace HotelChain.BusinessLogic.Models;
+﻿namespace HotelChain.BusinessLogic.Models.DeleteHotel;
 
 public class DeleteHotelResponse : Response
 {

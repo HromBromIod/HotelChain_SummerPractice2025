@@ -1,4 +1,5 @@
 ﻿using HotelChain.BusinessLogic.Models;
+using HotelChain.BusinessLogic.Models.CreateHotel;
 
 namespace HotelChain.Web.Models.CreateHotel;
 

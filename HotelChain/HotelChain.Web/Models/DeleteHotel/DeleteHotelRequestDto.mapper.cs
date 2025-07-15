@@ -1,4 +1,5 @@
 ﻿using HotelChain.BusinessLogic.Models;
+using HotelChain.BusinessLogic.Models.DeleteHotel;
 
 namespace HotelChain.Web.Models.DeleteHotel;
 
