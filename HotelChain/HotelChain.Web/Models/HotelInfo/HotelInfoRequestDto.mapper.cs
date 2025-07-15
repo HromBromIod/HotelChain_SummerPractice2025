@@ -1,4 +1,5 @@
 ﻿using HotelChain.BusinessLogic.Models;
+using HotelChain.BusinessLogic.Models.HotelInfo;
 
 namespace HotelChain.Web.Models.HotelInfo;
 

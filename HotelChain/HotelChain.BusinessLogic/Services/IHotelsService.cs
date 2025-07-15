@@ -1,4 +1,7 @@
 ﻿using HotelChain.BusinessLogic.Models;
+using HotelChain.BusinessLogic.Models.CreateHotel;
+using HotelChain.BusinessLogic.Models.DeleteHotel;
+using HotelChain.BusinessLogic.Models.HotelInfo;
 
 namespace HotelChain.BusinessLogic.Services;
 

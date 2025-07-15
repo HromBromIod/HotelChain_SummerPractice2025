@@ -1,6 +1,6 @@
-﻿namespace HotelChain.BusinessLogic.Models;
+﻿namespace HotelChain.BusinessLogic.Models.CreateHotel;
 
-public class HotelInfoResponse : Response
+public class CreateHotelResponse : Response
 {
     public int? Id { get; init; }
     public DateTime? CreationTime { get; init; }
