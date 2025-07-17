@@ -10,6 +10,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelChain.Core", "HotelCha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelChain.Persistence.PostgreSql", "HotelChain.Persistence.PostgreSql\HotelChain.Persistence.PostgreSql.csproj", "{0AACCAFB-388A-4EC0-96C2-117A12BE65D5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7B72BEE0-71E8-4126-B603-8C81AAB42749}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelChain.Tests", "Tests\HotelChain.Tests\HotelChain.Tests.csproj", "{1D23A33B-1E67-462C-BCD2-021388A7B762}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +40,12 @@ Global
 		{0AACCAFB-388A-4EC0-96C2-117A12BE65D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AACCAFB-388A-4EC0-96C2-117A12BE65D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AACCAFB-388A-4EC0-96C2-117A12BE65D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D23A33B-1E67-462C-BCD2-021388A7B762}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D23A33B-1E67-462C-BCD2-021388A7B762}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D23A33B-1E67-462C-BCD2-021388A7B762}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D23A33B-1E67-462C-BCD2-021388A7B762}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1D23A33B-1E67-462C-BCD2-021388A7B762} = {7B72BEE0-71E8-4126-B603-8C81AAB42749}
 	EndGlobalSection
 EndGlobal
