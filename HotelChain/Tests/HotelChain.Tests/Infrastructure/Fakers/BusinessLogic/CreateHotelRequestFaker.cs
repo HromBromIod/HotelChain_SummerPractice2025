@@ -1,21 +1,21 @@
 ﻿using AutoBogus;
-using HotelChain.Web.Models.CreateHotel;
+using HotelChain.BusinessLogic.Models.CreateHotel;
 
-namespace HotelChain.Tests.Infrastructure.Fakers;
+namespace HotelChain.Tests.Infrastructure.Fakers.BusinessLogic;
 
-internal static class CreateHotelRequestDtoFaker
+internal static class CreateHotelRequestFaker
 {
     private static string _validName = "hotel_name";
     private static string _validPhoneNumber = "12345678";
     private static string _validEmail = "email@email.com";
     private static string _validAddress = "hotel_address";
     
-    public static CreateHotelRequestDto? GenerateNull()
+    public static CreateHotelRequest? GenerateNull()
         => default;
 
-    public static CreateHotelRequestDto GenerateValid()
+    public static CreateHotelRequest GenerateValid()
     {
-        var faker = new AutoFaker<CreateHotelRequestDto>();
+        var faker = new AutoFaker<CreateHotelRequest>();
         return faker
             .RuleFor(p => p.Name, s => _validName)
             .RuleFor(p => p.PhoneNumber, s => _validPhoneNumber)
@@ -23,9 +23,9 @@ internal static class CreateHotelRequestDtoFaker
             .RuleFor(p => p.Address, s => _validAddress);
     }
     
-    public static CreateHotelRequestDto GenerateNoName()
+    public static CreateHotelRequest GenerateNoName()
     {
-        var faker = new AutoFaker<CreateHotelRequestDto>();
+        var faker = new AutoFaker<CreateHotelRequest>();
         return faker
             .RuleFor(p => p.Name, s => default)
             .RuleFor(p => p.PhoneNumber, s => _validPhoneNumber)
@@ -33,9 +33,9 @@ internal static class CreateHotelRequestDtoFaker
             .RuleFor(p => p.Address, s => _validAddress);
     }
     
-    public static CreateHotelRequestDto GenerateNoPhoneNumber()
+    public static CreateHotelRequest GenerateNoPhoneNumber()
     {
-        var faker = new AutoFaker<CreateHotelRequestDto>();
+        var faker = new AutoFaker<CreateHotelRequest>();
         return faker
             .RuleFor(p => p.Name, s => _validName)
             .RuleFor(p => p.PhoneNumber, s => default)
@@ -43,9 +43,9 @@ internal static class CreateHotelRequestDtoFaker
             .RuleFor(p => p.Address, s => _validAddress);
     }
     
-    public static CreateHotelRequestDto GenerateNoEmail()
+    public static CreateHotelRequest GenerateNoEmail()
     {
-        var faker = new AutoFaker<CreateHotelRequestDto>();
+        var faker = new AutoFaker<CreateHotelRequest>();
         return faker
             .RuleFor(p => p.Name, s => _validName)
             .RuleFor(p => p.PhoneNumber, s => _validPhoneNumber)
@@ -53,9 +53,9 @@ internal static class CreateHotelRequestDtoFaker
             .RuleFor(p => p.Address, s => _validAddress);
     }
     
-    public static CreateHotelRequestDto GenerateNoAddress()
+    public static CreateHotelRequest GenerateNoAddress()
     {
-        var faker = new AutoFaker<CreateHotelRequestDto>();
+        var faker = new AutoFaker<CreateHotelRequest>();
         return faker
             .RuleFor(p => p.Name, s => _validName)
             .RuleFor(p => p.PhoneNumber, s => _validPhoneNumber)
@@ -63,9 +63,9 @@ internal static class CreateHotelRequestDtoFaker
             .RuleFor(p => p.Address, s => default);
     }
     
-    public static CreateHotelRequestDto GenerateInvalidPhoneNumber()
+    public static CreateHotelRequest GenerateInvalidPhoneNumber()
     {
-        var faker = new AutoFaker<CreateHotelRequestDto>();
+        var faker = new AutoFaker<CreateHotelRequest>();
         return faker
             .RuleFor(p => p.Name, s => _validName)
             .RuleFor(p => p.PhoneNumber, s => "abcdefg")

@@ -1,4 +1,4 @@
-﻿using HotelChain.Tests.Infrastructure.Fakers;
+﻿using HotelChain.Tests.Infrastructure.Fakers.Web.CreateHotel;
 using HotelChain.Web.Models.CreateHotel;
 using Microsoft.AspNetCore.Http;
 

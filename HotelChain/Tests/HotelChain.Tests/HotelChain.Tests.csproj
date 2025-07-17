@@ -28,8 +28,4 @@
       <ProjectReference Include="..\..\HotelChain.Web\HotelChain.Web.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Web\Models\" />
-    </ItemGroup>
-
 </Project>

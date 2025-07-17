@@ -1,5 +1,6 @@
 ﻿using System;
-using HotelChain.Tests.Infrastructure.Fakers;
+using HotelChain.Tests.Infrastructure.Fakers.BusinessLogic;
+using HotelChain.Tests.Infrastructure.Fakers.Web.CreateHotel;
 using HotelChain.Web.Models.CreateHotel;
 
 namespace HotelChain.Tests.Web.Models.CreateHotel;
